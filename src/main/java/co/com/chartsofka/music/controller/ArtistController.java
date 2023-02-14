@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ArtistController {
     @Autowired
     ArtistServiceImpl artistService;
@@ -41,13 +42,13 @@ public class ArtistController {
     }
 
     @PutMapping("/artists")
-    private ResponseEntity<ArtistDTO> updateAlbum(@RequestBody ArtistDTO artistDTO){
-        return artistService.findArtistById(artistDTO.getArtistID()) == null ? ResponseEntity.status(204).body(artistDTO) :
-                ResponseEntity.ok().body(artistService.updateArtist(artistDTO));
+    private ResponseEntity<ArtistDTO> updateArtist(@RequestBody ArtistDTO artistDTO){
+        return ResponseEntity.ok().body(artistService.updateArtist(artistDTO));
     }
 
     @DeleteMapping("/artists/{id}")
-    private ResponseEntity<ArtistDTO> deleteAlbum(@PathVariable("id") String idArtist){
+    private ResponseEntity<ArtistDTO> deleteArtist(@PathVariable("id") String idArtist){
+        artistService.deleteArtist(idArtist);
         return artistService.findArtistById(idArtist) == null ? ResponseEntity.status(204).build():
                 ResponseEntity.status(200).build();
     }

@@ -34,7 +34,7 @@ public class MapperUtil {
                     artist.getDebutDate(),
                     artist.getEnterprise(),
                     artist.getType(),
-                    artist.getAlbums().isEmpty() ?
+                    artist.getAlbums() == null ?
                             new ArrayList<>() :
                             artist.getAlbums().stream()
                                     .map(album ->
@@ -66,7 +66,7 @@ public class MapperUtil {
                 album.getYearRelease(),
                 album.getGenre(),
                 artistToDTOWithoutAlbum().apply(album.getArtist()),
-                album.getSongs().isEmpty() ?
+                album.getSongs() == null ?
                         new ArrayList<>() :
                         album.getSongs().stream()
                         .map(song -> songToDTOWithoutAlbum().apply(song))
@@ -82,7 +82,7 @@ public class MapperUtil {
                 album.getYearRelease(),
                 album.getGenre(),
                 null,
-                album.getSongs().isEmpty() ?
+                album.getSongs() == null ?
                         new ArrayList<>() :
                         album.getSongs().stream()
                         .map(song ->
@@ -121,7 +121,7 @@ public class MapperUtil {
                 artist.getDebutDate(),
                 artist.getEnterprise(),
                 artist.getType(),
-                artist.getAlbums().isEmpty() ?
+                artist.getAlbums() == null ?
                         new ArrayList<>() :
                         artist.getAlbums().stream()
                         .map(album ->
@@ -151,7 +151,7 @@ public class MapperUtil {
                 album.getYearRelease(),
                 album.getGenre(),
                 dtoToArtistWithoutAlbum().apply(album.getArtist()),
-                album.getSongs().isEmpty() ?
+                album.getSongs() == null ?
                         new ArrayList<>() :
                         album.getSongs().stream()
                         .map(song ->
